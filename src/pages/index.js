@@ -1,21 +1,66 @@
 import React from "react"
-import { Link } from "gatsby"
-
-import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import Header from "../components/header"
+import { graphql } from "gatsby"
+import { Link } from "@reach/router"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
+// const IndexPage = () => (
+//   <Layout>
+//     <SEO title="Home" />
+//     <h1>Cześć</h1>
+//     <p>Witamy na naszym nowym blogu</p>
+//     <p>Będziemy tutaj pisać o samych świetnych rzeczach</p>
+//     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+//       <Image />
+//     </div>
+//     <Link to="/page-2/">Go to page 2</Link>
+//   </Layout>
+// )
+
+
+const IndexPage = ({data}) => {
+  console.log('props', data)
+  
+  
+  const { edges } = data.allMarkdownRemark
+  
+  return (
+    <div>
+      <SEO title="Home"/>
+      <Header/>
+      
+      {edges.map(edge => {
+        const {frontmatter} = edge.node
+        return (
+          <div key={frontmatter.path}>
+            <Link to={frontmatter.path}>
+              <h4 style={{marginBottom: "0px"}}>{frontmatter.title}</h4>
+            </Link>
+            <p>{frontmatter.excerpt}</p>
+          </div>
+        )
+      })}
     </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+  )
+}
+
+export const query = graphql`
+  query HomepageQuery {
+    allMarkdownRemark(
+      sort: {order: DESC, fields: [frontmatter___date]}
+     ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            excerpt
+            date
+            path
+          }
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage
