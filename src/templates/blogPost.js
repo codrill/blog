@@ -1,10 +1,10 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Header from "../components/header"
 
 
-const Template = ({data}) => {
-  console.log(data)
+const Template = ({data, pageContext}) => {
+  const {next, prev} = pageContext
   const {markdownRemark} = data
   const postTitle = markdownRemark.frontmatter.title
   const postHtml = markdownRemark.html
@@ -16,6 +16,19 @@ const Template = ({data}) => {
       <h1>{ postTitle }</h1>
       <div className="blogPost" dangerouslySetInnerHTML={{__html: postHtml}}>
       </div>
+      
+      {prev &&
+        <Link to={prev.frontmatter.path}>
+          Poprzedni post
+        </Link>
+      }
+  
+      {next &&
+      <Link to={next.frontmatter.path}>
+        Następny post
+      </Link>
+      }
+      
     </div>
   )
 }
