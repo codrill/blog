@@ -4,6 +4,9 @@ import Header from "../components/header"
 import { graphql } from "gatsby"
 import { Link } from "@reach/router"
 
+// TODO: Implement properly Layout component
+// https://trello.com/c/ZN2twpaz
+
 // const IndexPage = () => (
 //   <Layout>
 //     <SEO title="Home" />
@@ -18,10 +21,7 @@ import { Link } from "@reach/router"
 // )
 
 
-const IndexPage = ({data}) => {
-  console.log('props', data)
-  
-  
+const IndexPage = ({ data }) => {
   const { edges } = data.allMarkdownRemark
   
   return (
@@ -29,17 +29,21 @@ const IndexPage = ({data}) => {
       <SEO title="Home"/>
       <Header/>
       
-      {edges.map(edge => {
-        const {frontmatter} = edge.node
+      { edges.map(edge => {
+        const { frontmatter } = edge.node
         return (
-          <div key={frontmatter.path}>
-            <Link to={frontmatter.path}>
-              <h4 style={{marginBottom: "0px"}}>{frontmatter.title}</h4>
+          <div key={ frontmatter.path }>
+            <Link to={ frontmatter.path }>
+              <h4 style={ { marginBottom: "0px" } }>{ frontmatter.title }</h4>
             </Link>
-            <p>{frontmatter.excerpt}</p>
+            <p>{ frontmatter.excerpt }</p>
           </div>
         )
-      })}
+      }) }
+      
+      <div className="tags-link">
+        <Link to="/tags">Przeglądaj kategorie</Link>
+      </div>
     </div>
   )
 }
