@@ -1,5 +1,5 @@
 ---
-path: "/witaj-swiecie"
+path: "witaj-swiecie"
 date: "2019-07-06"
 title: "Witaj świecie!"
 tags: ['pozostale']
