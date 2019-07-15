@@ -34,7 +34,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "deploy": "gatsby build --prefix-path && gh-pages -d public"
+    "deploy": "gatsby build --prefix-paths && node ./scripts/deploy-github.js"
   },
   "repository": {
     "type": "git",
