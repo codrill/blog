@@ -41,8 +41,8 @@ const IndexPage = ({ data }) => {
         )
       }) }
       
-      <div className="tags-link">
-        <Link to="tags">Przeglądaj kategorie</Link>
+      <div className="categories-link">
+        <Link to="categories">Przeglądaj kategorie</Link>
       </div>
     </div>
   )
