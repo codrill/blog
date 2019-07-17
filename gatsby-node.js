@@ -37,9 +37,10 @@ const createCategoryPages = (createPage, posts) => {
   
   categories.forEach(categoryName => {
     const posts = postsByCategory[categoryName]
+    const categoryWithDashes = categoryName.replace(/\s+/g, '-').toLowerCase()
     
     createPage({
-      path: `/categories/${ categoryName }`,
+      path: `/categories/${ categoryWithDashes }`,
       component: singleCategoryIndexTemplate,
       context: {
         posts,

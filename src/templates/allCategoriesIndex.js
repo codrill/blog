@@ -12,9 +12,10 @@ const AllCategoriesTemplate = ({ data, pageContext }) => {
       <div>
         <ul>
           { categories.map((categoryName, index) => {
+            const categoryWithDashes = categoryName.replace(/\s+/g, '-').toLowerCase()
             return (
               <li key={ `categories-${ index }` }>
-                <Link to={ `/categories/${ categoryName }` }>
+                <Link to={ `/categories/${ categoryWithDashes }` }>
                   { categoryName }
                 </Link>
               </li>
