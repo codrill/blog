@@ -1,13 +1,13 @@
 import React from "react"
 import { Link } from "gatsby"
 
-const SingleTagTemplate = ({ data, pageContext }) => {
-  const { posts, tagName } = pageContext
+const SingleCategoryTemplate = ({ data, pageContext }) => {
+  const { posts, categoryName } = pageContext
   
   return (
     <div>
       <div>
-        Posty w kategorii: <span style={ { fontWeight: 700 } }>{ tagName }</span>
+        Posty w kategorii: <span style={ { fontWeight: 700 } }>{ categoryName }</span>
       </div>
       <div>
         <ul>
@@ -26,4 +26,4 @@ const SingleTagTemplate = ({ data, pageContext }) => {
   )
 }
 
-export default SingleTagTemplate
+export default SingleCategoryTemplate
