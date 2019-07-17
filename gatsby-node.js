@@ -8,42 +8,43 @@ const path = require("path")
 
 // You can delete this file if you're not using it
 
-const createTagPages = (createPage, posts) => {
-  const allTagsIndexTemplate = path.resolve("src/templates/allTagsIndex.js")
-  const singleTagIndexTemplate = path.resolve("src/templates/singleTagIndex.js")
+const createCategoryPages = (createPage, posts) => {
+  const allCategoriesIndexTemplate = path.resolve("src/templates/allCategoriesIndex.js")
+  const singleCategoryIndexTemplate = path.resolve("src/templates/singleCategoryIndex.js")
   
-  const postsByTag = {}
+  const postsByCategory = {}
   
   posts.forEach(({ node }) => {
-    if (node.frontmatter.tags) {
-      node.frontmatter.tags.forEach((tag => {
-        if (!postsByTag[tag]) {
-          postsByTag[tag] = []
+    if (node.frontmatter.categories) {
+      node.frontmatter.categories.forEach((category => {
+        if (!postsByCategory[category]) {
+          postsByCategory[category] = []
         }
         
-        postsByTag[tag].push(node)
+        postsByCategory[category].push(node)
       }))
     }
   })
   
-  const tags = Object.keys(postsByTag)
+  const categories = Object.keys(postsByCategory)
   createPage({
-    path: "/tags",
-    component: allTagsIndexTemplate,
+    path: "/categories",
+    component: allCategoriesIndexTemplate,
     context: {
-      tags: tags.sort(),
+      categories: categories.sort(),
     },
   })
   
-  tags.forEach(tagName => {
-    const posts = postsByTag[tagName]
+  categories.forEach(categoryName => {
+    const posts = postsByCategory[categoryName]
+    const categoryWithDashes = categoryName.replace(/\s+/g, '-').toLowerCase()
     
     createPage({
-      path: `/tags/${ tagName }`,
-      component: singleTagIndexTemplate,
+      path: `/categories/${ categoryWithDashes }`,
+      component: singleCategoryIndexTemplate,
       context: {
         posts,
-        tagName,
+        categoryName,
       },
     })
   })
@@ -67,7 +68,7 @@ exports.createPages = (({ graphql, actions }) => {
                   frontmatter {
                     path
                     title
-                    tags
+                    categories
                   }
                 }
               }
@@ -77,7 +78,7 @@ exports.createPages = (({ graphql, actions }) => {
       ).then(result => {
         const posts = result.data.allMarkdownRemark.edges
         
-        createTagPages(createPage, posts)
+        createCategoryPages(createPage, posts)
         
         posts.forEach(({ node }, index) => {
           const path = node.frontmatter.path
