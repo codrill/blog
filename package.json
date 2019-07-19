@@ -1,7 +1,7 @@
 {
-  "name": "mad-rat-blog",
+  "name": "web-chunks-blog",
   "private": false,
-  "description": "Official Mad Rat blog",
+  "description": "Web Chunks blog by Mad Rat",
   "version": "0.1.0",
   "author": "Radomir Skrzepij <radomir@skrzepij.pl>",
   "dependencies": {
@@ -24,7 +24,14 @@
     "prettier": "^1.18.2"
   },
   "keywords": [
-    "gatsby"
+    "web",
+    "javascript",
+    "css",
+    "html",
+    "react",
+    "angular",
+    "blog",
+    "mad rat"
   ],
   "license": "MIT",
   "scripts": {

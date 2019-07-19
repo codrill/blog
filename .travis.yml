@@ -1,0 +1,30 @@
+language: node_js
+node_js:
+  - 10.16.0
+  - node
+dist: xenial
+sudo: required
+
+branches:
+  only:
+    - master
+
+before_script:
+  - "npm i -g gatsby"
+  - "npm i"
+script:
+  # TODO: Implement tests and run suitable npm script here.
+  # eg. - npm run test
+  - npm run build
+after_success:
+  - "npm run deploy"
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $github_token
+  local_dir: public
+  keep-history: true
+  target-branch: gh-pages
+  on:
+    branch: master
