@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mad-rat/blog.svg?branch=master)](https://travis-ci.org/mad-rat/blog)
+
 # Web Chunks Blog
 
 

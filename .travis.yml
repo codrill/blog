@@ -4,10 +4,14 @@ node_js:
   - node
 dist: xenial
 sudo: required
+cache:
+  directories:
+    - node_modules
 
 branches:
   only:
     - master
+    - develop
 
 before_script:
   - "npm i -g gatsby"
