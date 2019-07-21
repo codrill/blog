@@ -1,3 +1,4 @@
+const nodeUtilsModule = require("./src/utils/node.utils")
 const path = require("path")
 
 /**
@@ -37,7 +38,7 @@ const createCategoryPages = (createPage, posts) => {
   
   categories.forEach(categoryName => {
     const posts = postsByCategory[categoryName]
-    const categoryWithDashes = categoryName.replace(/\s+/g, '-').toLowerCase()
+    const categoryWithDashes = nodeUtilsModule.replaceSpacesWithDashes(categoryName)
     
     createPage({
       path: `/categories/${ categoryWithDashes }`,

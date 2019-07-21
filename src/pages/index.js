@@ -3,6 +3,7 @@ import SEO from "../components/seo"
 import Header from "../components/header"
 import { graphql } from "gatsby"
 import { Link } from "@reach/router"
+import Footer from "../components/footer"
 
 // TODO: Implement properly Layout component
 // https://trello.com/c/ZN2twpaz
@@ -44,6 +45,8 @@ const IndexPage = ({ data }) => {
       <div className="categories-link">
         <Link to="categories">Przeglądaj kategorie</Link>
       </div>
+  
+      <Footer/>
     </div>
   )
 }

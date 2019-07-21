@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import { replaceSpacesWithDashes } from "../utils/string.utils"
 
 const AllCategoriesTemplate = ({ data, pageContext }) => {
   const { categories } = pageContext
@@ -12,7 +13,7 @@ const AllCategoriesTemplate = ({ data, pageContext }) => {
       <div>
         <ul>
           { categories.map((categoryName, index) => {
-            const categoryWithDashes = categoryName.replace(/\s+/g, '-').toLowerCase()
+            const categoryWithDashes = replaceSpacesWithDashes(categoryName)
             return (
               <li key={ `categories-${ index }` }>
                 <Link to={ `/categories/${ categoryWithDashes }` }>
