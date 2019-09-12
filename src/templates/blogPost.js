@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import Header from "../components/header"
+import Header from "../components/header/header"
 
 
 const Template = ({ data, pageContext }) => {
